@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:data_sentry.ViewModels"
+        mc:Ignorable="d"
+        x:Class="data_sentry.Views.ErrorView"
+        x:DataType="vm:ErrorViewModel"
+        Width="500" Height="300"
+        WindowStartupLocation="CenterOwner"
+        CanResize="True">
+
+    <Design.DataContext>
+        <vm:ErrorViewModel/>
+    </Design.DataContext>
+
+    <Grid Margin="20" RowDefinitions="Auto,*,Auto">
+        <TextBlock Grid.Row="0" Text="{Binding Title}" FontWeight="Bold" FontSize="18" Margin="0,0,0,10"/>
+
+        <Grid Grid.Row="1" RowDefinitions="Auto,*">
+            <TextBlock Grid.Row="0" Text="{Binding Message}" TextWrapping="Wrap" Margin="0,0,0,10"/>
+
+            <ScrollViewer Grid.Row="1" IsVisible="{Binding ShowDetails}">
+                <Border BorderBrush="LightGray" BorderThickness="1">
+                    <TextBox Text="{Binding Details}" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" />
+                </Border>
+            </ScrollViewer>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+            <Button Content="{Binding ShowDetails, Converter={StaticResource BoolToStringConverter}, ConverterParameter='Hide Details|Show Details'}"
+                    Command="{Binding ToggleDetailsCommand}"/>
+            <Button Content="OK" Click="OkButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

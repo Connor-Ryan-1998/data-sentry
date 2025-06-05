@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:data_sentry.ViewModels"
+        xmlns:converters="using:data_sentry.Converters"
+        xmlns:models="using:data_sentry.Models"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
+        x:Class="data_sentry.Views.ResultsView"
+        x:DataType="vm:ResultsViewModel"
+        Title="Check Results"
+        Width="600" Height="450"
+        Background="#1A1C20">
+
+    <Grid RowDefinitions="Auto,*" Margin="20">
+        <!-- Header -->
+        <TextBlock Grid.Row="0"
+                Text="{Binding Title}"
+                FontSize="20"
+                FontWeight="SemiBold"
+                Foreground="#FFFFFF"
+                Margin="0,0,0,16"/>
+
+        <!-- Tab control to switch between raw and tree views -->
+        <TabControl Grid.Row="1" Background="Transparent">
+            <TabItem Header="Raw JSON" Background="#23272F">
+                <TextBox Text="{Binding ResultJson}"
+                        FontFamily="Consolas, Courier New, monospace"
+                        FontSize="14"
+                        Foreground="#DDDDDD"
+                        Background="#23272F"
+                        IsReadOnly="True"
+                        AcceptsReturn="True"
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

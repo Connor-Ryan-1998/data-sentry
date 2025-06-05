@@ -1,0 +1,43 @@
+<Window x:Class="data_sentry.Views.MainWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:dataTemplates="using:data_sentry.DataTemplates"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="using:data_sentry.Models"
+        xmlns:vm="using:data_sentry.ViewModels"
+        xmlns:views="using:data_sentry.Views"
+        Title="Data Sentry"
+        Width="800"
+        Height="600"
+        Background="#F5F5F5"
+        Icon="/Assets/data-sentry.ico"
+        x:CompileBindings="True"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <views:ConfigEditorView />
+        <views:ChecksView />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="*">
+        <!-- Header -->
+        <TabControl Grid.Row="0"
+                    Margin="0,0,0,0"
+                    Padding="10"
+                    Background="#23272F"
+                    Foreground="#EEE"
+                    BorderBrush="#444"
+                    BorderThickness="1"
+                    TabStripPlacement="Top">
+            <TabItem Header="Checks">
+                <views:ChecksView x:Name="checksView"/>
+            </TabItem>
+            <TabItem Header="Configuration">
+                <views:ConfigEditorView />
+            </TabItem>
+        </TabControl>
+    </Grid>
+
+</Window>
